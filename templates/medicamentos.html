@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Medicamentos{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Medicamentos registrados</h1>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Presentación</th>
+            <th>Fecha de Vencimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medicamento in medicamentos %}
+        <tr>
+            <td>{{ medicamento[0] }}</td>
+            <td>{{ medicamento[1] }}</td>
+            <td>{{ medicamento[2] }}</td>
+            <td>{{ medicamento[3] }}</td>
+            <td>
+                <a href="/editar/{{ medicamento[0] }}" class="btn btn-sm btn-warning">Editar</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

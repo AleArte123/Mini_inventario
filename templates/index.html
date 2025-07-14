@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Inventario</title>
-</head>
+{% block title %}Bienvenido{% endblock %}
 
-<body>
-    <h1>Titulo de prueba</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus numquam officia obcaecati, quae, debitis placeat
-        alias pariatur dolorum quis, aliquid quasi dolorem quisquam aperiam. Dolorum hic ut nulla illo earum?
-    </p>
-</body>
-
-</html>
+{% block content %}
+<h1>¡Bienvenido al sistema de inventario!</h1>
+<p>Selecciona una opción en el menú...</p>
+{% endblock %}
