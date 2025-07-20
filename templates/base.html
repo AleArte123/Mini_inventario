@@ -10,6 +10,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Mini Inventario</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOpciones">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,6 +23,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/agregar">Agregar Medicamento</a>
                     </li>
+                    {% if session['rol'] == 'admin' %}
+                    <a href="/logout" class="btn btn-outline-light btn-sm">Cerrar sesión</a>
+                    {% endif %}
+
                     <!-- Más rutas futuras -->
                 </ul>
             </div>

@@ -23,6 +23,9 @@
             <td>{{ medicamento[3] }}</td>
             <td>
                 <a href="/editar/{{ medicamento[0] }}" class="btn btn-sm btn-warning">Editar</a>
+                {% if session['rol'] == 'admin' %}
+                <a href="/eliminar/{{ medicamento[0] }}" class="btn btn-sm btn-danger">Eliminar</a>
+                {% endif %}
             </td>
 
         </tr>
