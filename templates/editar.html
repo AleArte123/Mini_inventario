@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Medicamento{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Editar Medicamento</h1>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{ medicamento[1] }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="presentacion" class="form-label">Presentación</label>
+        <input type="text" class="form-control" name="presentacion" value="{{ medicamento[2] }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="fecha_vencimiento" class="form-label">Fecha de vencimiento</label>
+        <input type="date" class="form-control" name="fecha_vencimiento" value="{{ medicamento[3] }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a href="/medicamentos" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

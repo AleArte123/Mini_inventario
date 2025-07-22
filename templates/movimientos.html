@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Historial de Movimientos{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Historial de Entradas y Salidas</h1>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Medicamento</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th>Observación</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mov in movimientos %}
+        <tr>
+            <td>{{ mov[0] }}</td>
+            <td>{{ mov[1] }}</td>
+            <td>{{ mov[2] }}</td>
+            <td>{{ mov[3] }}</td>
+            <td>{{ mov[4] }}</td>
+            <td>{{ mov[5] or '—' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
