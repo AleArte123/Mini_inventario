@@ -123,6 +123,51 @@ def logout():
     return redirect(url_for('login'))
 
 
+@app.route('/movimientos')
+def ver_movimientos():
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT m.id, med.nombre, m.tipo, m.cantidad, m.fecha, m.observacion
+        FROM movimientos m
+        JOIN medicamentos med ON m.medicamento_id = med.id
+        ORDER BY m.fecha DESC
+    """)
+    movimientos = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('movimientos.html', movimientos=movimientos)
+
+
+@app.route('/registrar_movimiento', methods=['GET', 'POST'])
+def registrar_movimiento():
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    if request.method == 'POST':
+        medicamento_id = request.form['medicamento_id']
+        tipo = request.form['tipo']
+        cantidad = int(request.form['cantidad'])
+        observacion = request.form['observacion']
+
+        cursor.execute("""
+            INSERT INTO movimientos (medicamento_id, tipo, cantidad, observacion)
+            VALUES (%s, %s, %s, %s)
+        """, (medicamento_id, tipo, cantidad, observacion))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return redirect(url_for('ver_movimientos'))
+
+    # Si es GET, obtener lista de medicamentos para el select
+    cursor.execute("SELECT id, nombre FROM medicamentos")
+    medicamentos = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('registrar_movimiento.html', medicamentos=medicamentos)
+
+
 # Ejecutar la app en modo debug
 if __name__ == '__main__':
     app.run(debug=True)
